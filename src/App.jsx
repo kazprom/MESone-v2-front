@@ -1,8 +1,14 @@
-import React from 'react';
+import React, { Suspense } from 'react';
+import { BrowserRouter } from 'react-router-dom';
+import Routes from './Routes';
 
 function App() {
     return (
-        <div>Hello!</div>
+        <BrowserRouter>
+            <Suspense fallback={<div>Loading</div>}>
+                <Routes/>
+            </Suspense>
+        </BrowserRouter>
     );
 }
 
