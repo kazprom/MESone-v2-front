@@ -5,12 +5,14 @@ import store from './store'
 import { ThemeProvider } from '@material-ui/core/styles';
 import theme from './theme';
 import App from './App';
+import Toast from './components/Toast/Toast';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
     <Provider store={store}>
         <ThemeProvider theme={theme}>
             <App/>
+            <Toast/>
         </ThemeProvider>
     </Provider>,
     document.getElementById('root')
