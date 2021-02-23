@@ -1,5 +1,6 @@
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Actions ~~~ */
 
+export const APP_INIT = 'APP_INIT';
 export const LOADER_TOGGLE = 'LOADER_TOGGLE';
 
 export const MESSAGE_SHOW = 'MESSAGE_SHOW';
@@ -7,6 +8,10 @@ export const MESSAGE_HIDE = 'MESSAGE_HIDE';
 export const MESSAGE_SET_LIST = 'MESSAGE_SET_LIST';
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ActionsCreator ~~~ */
+
+export const appInit = () => ({
+    type: APP_INIT,
+});
 
 export const loaderToggle = payload => ({
     type: LOADER_TOGGLE,

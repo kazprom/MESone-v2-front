@@ -1,11 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import DashboardComponent from './DashboardComponent';
-import langPack from '../../lang/ru/Dashboard.js'
+import InstallerComponent from './InstallerComponent';
+import langPack from '../../lang/ru/Installer'
 import { authSignOut } from '../../store/auth/actions';
 
-function Dashboard(props) {
-    return (<DashboardComponent
+function Installer(props) {
+    return (<InstallerComponent
         langPack={langPack}
         onClick={props.logout}
     />);
@@ -17,4 +17,4 @@ function mapDispatchToProps(dispatch) {
     });
 }
 
-export default connect(null, mapDispatchToProps)(Dashboard);
+export default connect(null, mapDispatchToProps)(Installer);

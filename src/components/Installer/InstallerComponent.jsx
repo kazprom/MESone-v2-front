@@ -1,13 +1,13 @@
 import React from 'react';
 import { Button } from '@material-ui/core';
 
-function DashboardComponent({ langPack, ...props }) {
+function InstallerComponent({ langPack, ...props }) {
     return (
         <div>
-            <div>{langPack.dashboard}</div>
+            <div>{langPack.installer}</div>
             <Button onClick={props.onClick}>logout</Button>
         </div>
     );
 }
 
-export default DashboardComponent;
+export default InstallerComponent;
