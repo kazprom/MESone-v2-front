@@ -10,8 +10,8 @@ function* workerAuthRequest({ payload }) {
     yield put(loaderToggle(true));
     try {
         const data = yield call(loginRequest, payload);
-        if (data.login !== null) {
-            const { token, ...user } = data.login;
+        if (data.authLogin !== null) {
+            const { token, ...user } = data.authLogin;
             localStorage.setItem('user', JSON.stringify(user));
             localStorage.setItem('token', token);
             yield put(authLogin({ user, token }));
@@ -53,9 +53,9 @@ function* workerAuthLogout() {
 function* workerAuthRefresh() {
     try {
         const currentUser = yield select(user);
-        const { refreshToken } = yield call(refreshTokenRequest);
-        localStorage.setItem('token', refreshToken);
-        yield put(authLogin({ user: currentUser, token: refreshToken }));
+        const { authRefreshToken } = yield call(refreshTokenRequest);
+        localStorage.setItem('token', authRefreshToken);
+        yield put(authLogin({ user: currentUser, token: authRefreshToken }));
     } catch (error) {
         yield put(messageShow({
             severity: 'error',

@@ -32,7 +32,7 @@ function LoginFormComponent({ langPack, fields, changeField, ...props }) {
                         value={fields.password}
                         onChange={changeField}
                     />
-                    <FormControl fullWidth variant='outlined'>
+                    {(props.domains.length > 1) && <FormControl fullWidth variant='outlined'>
                         <InputLabel id='type-auth-label' children={langPack.typeAuth}/>
                         <Select
                             id='type-auth'
@@ -42,11 +42,11 @@ function LoginFormComponent({ langPack, fields, changeField, ...props }) {
                             value={props.selectedDomain}
                             onChange={changeField}
                             disabled={props.disableCheckbox}
-                            children={props.domains.map((item, i) => (
-                                <MenuItem key={`type-auth-item-${i}`} value={item.id} children={item.name}/>
+                            children={props.domains.map(item => (
+                                <MenuItem key={`type-auth-item-${item.id}`} value={item.id} children={item.name}/>
                             ))}
                         />
-                    </FormControl>
+                    </FormControl>}
                 </CardContent>
                 <CardActions className={classes.cardActions}>
                     <FormControlLabel

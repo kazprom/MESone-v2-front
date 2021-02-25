@@ -9,7 +9,7 @@ export function loginRequest({ login, password, domain = null, remember = false 
         $domain: Int,
         $remember: Boolean,
     ){
-        login(
+        authLogin(
             login: $login,
             password: $password,
             domain_id: $domain,
@@ -34,7 +34,7 @@ export function loginRequest({ login, password, domain = null, remember = false 
 
 export function logoutRequest() {
     const query = gql`mutation {
-        logout {
+        authLogout {
             id
         }
     }`;
@@ -45,7 +45,7 @@ export function logoutRequest() {
 
 export function refreshTokenRequest() {
     const query = gql`mutation {
-        refreshToken
+        authRefreshToken
     }`;
     return client().request(query)
         .then(data => data)
