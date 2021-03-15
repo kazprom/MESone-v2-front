@@ -1,6 +1,7 @@
 import { LOADER_TOGGLE, MESSAGE_SET_LIST } from './actions';
 
 const initialState = {
+    apiServer:"http://kazprom.core-mesone-v2-back/api/graphql",
     isLoading: false,
     messages: [],
 }

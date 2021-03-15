@@ -1,18 +1,22 @@
 import React, { Fragment } from 'react';
-import { connect } from 'react-redux';
+import {useSelector} from 'react-redux';
 import { Route, Switch } from 'react-router-dom';
-import { isAuth, user } from './store/auth/selectors';
 import { LoginForm } from './components/Auth';
 import Installer from './components/Installer/Installer';
 import Dashboard from './components/Dashboard/Dashboard';
 import RefreshToken from './components/Auth/RefreshToken/RefreshToken';
+import * as authSelector from "./store/auth/selectors";
+import {Content} from "./ui";
 
-function Routes(props) {
-    if (props.isAuth === false) {
+export default function Routes(props) {
+    let user=useSelector(authSelector.user);
+    let isAuth=useSelector(authSelector.isAuth);
+
+    if (isAuth === false) {
         return (<LoginForm/>);
     }
 
-    if (props.user?.id === '0') {
+    if (user?.id === '0') {
         return (
             <Fragment>
                 <Installer/>
@@ -30,12 +34,3 @@ function Routes(props) {
         </Fragment>
     )
 }
-
-function mapStateToProps(store) {
-    return ({
-        user: user(store),
-        isAuth: isAuth(store),
-    });
-}
-
-export default connect(mapStateToProps)(Routes);

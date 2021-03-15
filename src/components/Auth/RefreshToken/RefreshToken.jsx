@@ -1,15 +1,19 @@
 import { useEffect } from 'react';
-import { connect } from 'react-redux';
-import { token } from '../../../store/auth/selectors';
+import {useDispatch, useSelector} from 'react-redux';
 import jwtDecode from 'jwt-decode';
-import { authRefreshToken } from '../../../store/auth/actions';
+import * as authSelector from "../../../store/auth/selectors";
+import * as actions from "../../../store/auth/actions";
 
-function RefreshToken(props) {
+export default function RefreshToken(props) {
+    let token=useSelector(authSelector.token)
+    let dispatch=useDispatch();
+    let authRefreshToken=()=>dispatch(actions.authRefreshToken);
+
     useEffect(() => {
         const timer = setInterval(() => {
-            const { exp } = jwtDecode(props.token);
+            const { exp } = jwtDecode(token);
             const now = Math.floor(Date.now() / 1000);
-            if (now > exp - 30) props.refresh();
+            if (now > exp - 30) authRefreshToken();
         }, 15000);
         return () => {
             clearTimeout(timer);
@@ -17,17 +21,3 @@ function RefreshToken(props) {
     }, [props]);
     return null;
 }
-
-function mapStateToProps(store) {
-    return ({
-        token: token(store),
-    });
-}
-
-function mapDispatchToProps(dispatch) {
-    return ({
-        refresh: () => dispatch(authRefreshToken()),
-    });
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(RefreshToken);

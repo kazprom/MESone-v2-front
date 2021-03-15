@@ -1,22 +1,29 @@
-import React, { useState } from 'react';
-import { batch, connect } from 'react-redux';
+import React, {useState} from 'react';
+import {batch, useDispatch, useSelector} from 'react-redux';
 import langPack from '../../../lang/ru/Auth';
 import LoginFormComponent from './LoginFormComponent';
-import { authSignIn } from '../../../store/auth/actions';
-import { isLoading } from '../../../store/app/selectors';
-import { domainsSelector } from '../../../store/auth/selectors';
+import * as actions from '../../../store/auth/actions';
+import * as appSelector from '../../../store/app/selectors';
+import * as authSelector from '../../../store/auth/selectors';
+import {Button, Chip, Grid} from "@material-ui/core";
+import FaceIcon from '@material-ui/icons/Face';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 
-function LoginForm(props) {
+export default function LoginForm(props) {
+    let isLoading=useSelector(appSelector.isLoading)
+    let domains=useSelector(authSelector.domains)
+    let dispatch=useDispatch();
+    let authSignIn = (payload)=>dispatch(actions.authSignIn(payload));
 
-    const domains = [
+    const domainsList = [
         {
             id: 'default',
             name: 'Встроенная система безопасности'
         },
-        ...props.domains.filter(item => item.enabled),
+        ...domains?.filter(item => item.enabled),
     ];
 
-    const [selectedDomain, setSelectedDomain] = useState(domains[0].id);
+    const [selectedDomain, setSelectedDomain] = useState(domainsList[0].id);
     const [payload, setPayload] = useState({ login: '', password: '', domain_id: null, remember: false });
 
     function changeField(event) {
@@ -44,35 +51,19 @@ function LoginForm(props) {
         return (login === '' || password === '');
     }
 
-    function formAction(event) {
-        event.preventDefault();
-        props.authLoginRequest(payload);
+    function signInHandler(event) {
+        authSignIn(payload);
     }
 
     return (<LoginFormComponent
         langPack={langPack}
-        isLoading={props.isLoading}
+        isLoading={isLoading}
         disableSubmit={handleDisableSubmit()}
         disableCheckbox={handleDisableCheckbox()}
         fields={payload}
         changeField={changeField}
-        domains={domains}
+        domains={domainsList}
         selectedDomain={selectedDomain}
-        onSubmit={formAction}
+        signIn={signInHandler}
     />);
 }
-
-function mapStateToProps(state) {
-    return ({
-        isLoading: isLoading(state),
-        domains: domainsSelector(state),
-    });
-}
-
-function mapDispatchToProps(dispatch) {
-    return ({
-        authLoginRequest: payload => dispatch(authSignIn(payload)),
-    });
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(LoginForm);

@@ -1,20 +1,21 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import InstallerComponent from './InstallerComponent';
-import langPack from '../../lang/ru/Installer'
-import { authSignOut } from '../../store/auth/actions';
+import {Grid} from "@material-ui/core";
+import {Content, Header, Sidebar} from "../../ui";
+import {useStyles} from "./InstallerStyle";
+import {LogOutForm} from "../Auth";
 
-function Installer(props) {
-    return (<InstallerComponent
-        langPack={langPack}
-        onClick={props.logout}
-    />);
+export default function Installer(props) {
+    let style=useStyles();
+    return (
+        <Grid container direction={"row"} className={style.installerWrapper}>
+            <Grid item className={style.installerSidebar}>
+                <Sidebar/>
+            </Grid>
+            <Grid item className={style.installerContainer}>
+                <Header children={<LogOutForm/>}/>
+                <Content children={(
+                    <div>Installer</div>
+                )}/>
+            </Grid>
+        </Grid>);
 }
-
-function mapDispatchToProps(dispatch) {
-    return ({
-        logout: () => dispatch(authSignOut()),
-    });
-}
-
-export default connect(null, mapDispatchToProps)(Installer);

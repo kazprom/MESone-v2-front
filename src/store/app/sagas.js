@@ -2,7 +2,7 @@ import { all, call, put, select, takeEvery, takeLatest } from 'redux-saga/effect
 import { APP_INIT, MESSAGE_HIDE, MESSAGE_SHOW, messageSetList, messageShow } from './actions';
 import { authSetDomains } from '../auth/actions';
 import { getMessages } from './selectors';
-import { queryInitData } from '../../queries/app';
+import { queryInitData } from '../../requests/app';
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Workers ~~~ */
 

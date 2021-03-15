@@ -1,18 +1,22 @@
 import { makeStyles } from '@material-ui/core/styles';
 
 export const useStyles = makeStyles(theme => ({
-    cardContent: {
-        '& > *': {
-            marginBottom: theme.spacing(2),
-            '&:last-child': {
-                marginBottom: 'unset',
-            }
-        }
+    loginContainer:{
+        margin:"auto",
+        flex:"none",
+        padding:0,
+        width:"auto",
+        backgroundColor:"inherit",
     },
-    cardActions: {
-        justifyContent: 'space-between',
+    loginLogo:{
+        textAlign:"center",
     },
-    button: {
-        width: '8em',
-    }
+    loginForm:{
+        margin:"auto",
+        flex:"none",
+        padding:0,
+        border:"1px solid #CCC",
+        width:"350px",
+        backgroundColor:"#FFF",
+    },
 }));

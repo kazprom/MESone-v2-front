@@ -1,73 +1,115 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import { useStyles } from './LoginFormStyles';
 import {
-    Card,
-    CardActions,
-    CardContent,
+    Box,
     Checkbox,
-    Container, FormControl,
-    FormControlLabel, InputLabel, MenuItem, Select,
+    FormControl,
+    FormControlLabel, Grid, InputAdornment, InputLabel, MenuItem, Select,
     TextField
 } from '@material-ui/core';
+import PersonIcon from '@material-ui/icons/Person';
+import LockIcon from '@material-ui/icons/Lock';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import LogoImage from "../../../No-logo.svg";
 import { ButtonLoader } from '../../../ui';
 
-function LoginFormComponent({ langPack, fields, changeField, ...props }) {
+function LoginFormComponent({ langPack, fields, changeField,signIn,isLoading, ...props }) {
     const classes = useStyles();
     return (
-        <Container fixed={true} maxWidth='xs' component='main'>
-            <Card component='form' onSubmit={props.onSubmit}>
-                <CardContent className={classes.cardContent}>
-                    <TextField
-                        fullWidth
-                        variant="outlined"
-                        name="login"
-                        label="Логин"
-                        value={fields.login}
-                        onChange={changeField}
-                    />
-                    <TextField
-                        type='password'
-                        name='password'
-                        label={langPack.password}
-                        value={fields.password}
-                        onChange={changeField}
-                    />
-                    {(props.domains.length > 1) && <FormControl fullWidth variant='outlined'>
-                        <InputLabel id='type-auth-label' children={langPack.typeAuth}/>
-                        <Select
-                            id='type-auth'
-                            labelId='type-auth-label'
-                            name='domain_id'
-                            label={langPack.typeAuth}
-                            value={props.selectedDomain}
-                            onChange={changeField}
-                            disabled={props.disableCheckbox}
-                            children={props.domains.map(item => (
-                                <MenuItem key={`type-auth-item-${item.id}`} value={item.id} children={item.name}/>
-                            ))}
-                        />
-                    </FormControl>}
-                </CardContent>
-                <CardActions className={classes.cardActions}>
-                    <FormControlLabel
-                        control={<Checkbox
-                            name='remember'
-                            checked={fields.remember}
-                            onChange={changeField}
-                            disabled={props.disableCheckbox}
-                        />}
-                        label={langPack.rememberMe}
-                    />
-                    <ButtonLoader
-                        className={classes.button}
-                        type='submit'
-                        children={langPack.submit}
-                        disabled={props.disableSubmit}
-                        isLoading={props.isLoading}
-                    />
-                </CardActions>
-            </Card>
-        </Container>
+        <Fragment>
+            <Grid container direction={"column"} spacing={1} className={classes.loginContainer}>
+                <Grid item className={classes.loginLogo}>
+                    <img src={LogoImage}/>
+                </Grid>
+                <Grid item className={classes.loginForm}>
+                    <Box p={1}>
+                        <Grid container direction={"column"} spacing={1}>
+                            <Grid item>
+                                <TextField
+                                    size={"small"}
+                                    fullWidth
+                                    variant="outlined"
+                                    name="login"
+                                    label="Логин"
+                                    value={fields.login}
+                                    onChange={changeField}
+                                    InputProps={{
+                                        startAdornment: (
+                                            <InputAdornment position="start">
+                                                <PersonIcon color={"primary"}/>
+                                            </InputAdornment>
+                                        ),
+                                    }}
+                                />
+                            </Grid>
+                            <Grid item>
+                                <TextField
+                                    size={"small"}
+                                    type='password'
+                                    name='password'
+                                    label={langPack.password}
+                                    value={fields.password}
+                                    onChange={changeField}
+                                    InputProps={{
+                                        startAdornment: (
+                                            <InputAdornment position="start">
+                                                <LockIcon color={"primary"}/>
+                                            </InputAdornment>
+                                        ),
+                                    }}
+                                />
+                            </Grid>
+                            <Grid item>
+                                {(props.domains.length > 1) && <FormControl fullWidth variant='outlined'>
+                                    <InputLabel id='type-auth-label' children={langPack.typeAuth}/>
+                                    <Select
+                                        id='type-auth'
+                                        labelId='type-auth-label'
+                                        name='domain_id'
+                                        label={langPack.typeAuth}
+                                        value={props.selectedDomain}
+                                        onChange={changeField}
+                                        disabled={props.disableCheckbox}
+                                        children={props.domains.map(item => (
+                                            <MenuItem key={`type-auth-item-${item.id}`} value={item.id} children={item.name}/>
+                                        ))}
+                                    />
+                                </FormControl>}
+                            </Grid>
+                            <Grid item>
+                                <Grid container direction={"row"} spacing={1}>
+                                    <Grid item xs={7}>
+                                        <FormControlLabel
+                                            control={<Checkbox
+                                                color={"primary"}
+                                                name='remember'
+                                                checked={fields.remember}
+                                                onChange={changeField}
+                                                disabled={props.disableCheckbox}
+                                            />}
+                                            label={langPack.rememberMe}
+                                        />
+                                    </Grid>
+                                    <Grid item xs={5}>
+                                        <ButtonLoader
+                                            variant={"outlined"}
+                                            startIcon={<ExitToAppIcon color={"primary"}/>}
+                                            style={{width:"100%"}}
+                                            className={classes.button}
+                                            type='submit'
+                                            children={langPack.submit}
+                                            disabled={props.disableSubmit}
+                                            onClick={signIn}
+                                            isLoading={isLoading}
+                                        />
+                                    </Grid>
+                                </Grid>
+                            </Grid>
+                        </Grid>
+                    </Box>
+                </Grid>
+            </Grid>
+        </Fragment>
     );
 }
 

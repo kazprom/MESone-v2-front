@@ -1,7 +1,7 @@
 import { all, put, call, takeLatest, select } from 'redux-saga/effects';
 import { loaderToggle, messageShow } from '../app/actions';
 import { AUTH_REFRESH_TOKEN, AUTH_SIGN_IN, AUTH_SIGN_OUT, authLogin, authLogout } from './actions';
-import { loginRequest, logoutRequest, refreshTokenRequest } from '../../queries/auth';
+import { loginRequest, logoutRequest, refreshTokenRequest } from '../../requests/auth';
 import { user } from './selectors';
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Workers ~~~ */

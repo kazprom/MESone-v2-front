@@ -1,1 +1,5 @@
 export { default as ButtonLoader } from './ButtonLoader/ButtonLoader'
+export { default as Content } from './Content/Content'
+export { default as Header } from './Content/Header/Header'
+export { default as Sidebar } from './Sidebar/Sidebar'
+export { default as Toolbar } from './Toolbar/Toolbar'

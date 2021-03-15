@@ -1,30 +1,19 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import langPack from '../../lang/ru/Toast';
 import ToastComponent from './ToastComponent';
-import { getMessages } from '../../store/app/selectors';
-import { messageHide } from '../../store/app/actions';
+import * as selectors from '../../store/app/selectors';
+import * as actions from "../../store/app/actions";
 
-function Toast(props) {
+export default function Toast(props) {
+    let getMessages = useSelector(selectors.getMessages);
+    let dispatch=useDispatch();
+    let onCloseMessage=(payload)=>dispatch(actions.messageHide(payload));
     return (
         <ToastComponent
             langPack={langPack}
-            messages={props.messages}
-            onCloseMessage={props.onCloseMessage}
+            messages={getMessages}
+            onCloseMessage={onCloseMessage}
         />
     );
 }
-
-function mapStateToProps(store) {
-    return ({
-        messages: getMessages(store),
-    });
-}
-
-function mapDispatchToProps(dispatch) {
-    return ({
-        onCloseMessage: payload => dispatch(messageHide(payload)),
-    });
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Toast);

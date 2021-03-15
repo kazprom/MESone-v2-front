@@ -1,0 +1,34 @@
+html, body {
+  height: 100%;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  line-height:inherit!important;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+  >div{
+    background-color: #f3f3f3;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: auto;
+  }
+}
+
+header {
+  height: max-content;
+}
+
+main {
+  flex: 1;
+  background-color: #FFF;
+  overflow: auto;
+}
+
+footer {
+  height:100px;
+}

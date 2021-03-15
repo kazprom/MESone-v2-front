@@ -1,20 +1,14 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import {useDispatch} from 'react-redux';
 import DashboardComponent from './DashboardComponent';
 import langPack from '../../lang/ru/Dashboard.js'
-import { authSignOut } from '../../store/auth/actions';
+import * as actions from "../../store/auth/actions";
 
-function Dashboard(props) {
+export default function Dashboard(props) {
+    let dispatch=useDispatch();
+    let authSignOut=()=>dispatch(actions.authSignOut());
     return (<DashboardComponent
         langPack={langPack}
-        onClick={props.logout}
+        onClick={authSignOut}
     />);
 }
-
-function mapDispatchToProps(dispatch) {
-    return ({
-        logout: () => dispatch(authSignOut()),
-    });
-}
-
-export default connect(null, mapDispatchToProps)(Dashboard);
