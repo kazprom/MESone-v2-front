@@ -5,9 +5,6 @@ import LoginFormComponent from './LoginFormComponent';
 import * as actions from '../../../store/auth/actions';
 import * as appSelector from '../../../store/app/selectors';
 import * as authSelector from '../../../store/auth/selectors';
-import {Button, Chip, Grid} from "@material-ui/core";
-import FaceIcon from '@material-ui/icons/Face';
-import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 
 export default function LoginForm(props) {
     let isLoading=useSelector(appSelector.isLoading)

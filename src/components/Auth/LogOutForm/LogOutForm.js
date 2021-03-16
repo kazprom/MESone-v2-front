@@ -16,7 +16,7 @@ export default function LogOutForm(props){
         return (
             <Chip
                 icon={<FaceIcon />}
-                label={user?.first_name}
+                label={user?.first_name||''}
                 onDelete={authSignOut}
                 deleteIcon={<ExitToAppIcon/>}
                 variant="outlined"

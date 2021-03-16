@@ -1,12 +1,11 @@
-import App from "../components/App/App";
+import App from "../../components/App/App";
 import React, {Fragment} from "react";
-import Toast from "../components/Toast/Toast";
+import Toast from "../../components/Toast/Toast";
 
 export default function AppController(){
     return(
         <Fragment>
             <App/>
-            <Toast/>
         </Fragment>
     )
 }
