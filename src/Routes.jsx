@@ -6,7 +6,6 @@ import Installer from './components/Installer/Installer';
 import Dashboard from './components/Dashboard/Dashboard';
 import RefreshToken from './components/Auth/RefreshToken/RefreshToken';
 import * as authSelector from "./store/auth/selectors";
-import {Content} from "./ui";
 
 export default function Routes(props) {
     let user=useSelector(authSelector.user);

@@ -1,4 +1,6 @@
 import { lazy } from "react";
+import langPack from "../../lang";
+
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ functions ~~~ */
 
@@ -9,7 +11,7 @@ const functions = [
             import(
                 /* webpackChunkName: "functionsController" */
                 /* webpackMode: "lazy" */
-                "./controllers/FunctionsController"
+                "../../controllers/FunctionsController/FunctionsController"
                 )
         )
     },
@@ -19,13 +21,14 @@ const functions = [
 
 const settings = [
     {
+        name:'',
         path: "/settings",
         forAdmin: true,
         component: lazy(props =>
             import(
                 /* webpackChunkName: "settingsController" */
                 /* webpackMode: "lazy" */
-                "./controllers/SettingsController"
+                "../../controllers/SettingsController/SettingsController"
                 )
         )
     },
@@ -39,7 +42,7 @@ const noMatch = {
         import(
             /* webpackChunkName: "no-match" */
             /* webpackMode: "lazy" */
-            "./components/PageNotFound/PageNotFound"
+            "../../components/PageNotFound/PageNotFound"
             )
     )
 };
