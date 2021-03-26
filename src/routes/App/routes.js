@@ -1,17 +1,22 @@
 import { lazy } from "react";
-import langPack from "../../lang";
-
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ functions ~~~ */
 
 const functions = [
     {
+        back:false,
+        link:true,
+        exact:false,
+        name:'Functions',
         path: "/functions",
+        private:true,
+        root:false,
+        forAdmin: false,
         component: lazy(props =>
             import(
-                /* webpackChunkName: "functionsController" */
+                /* webpackChunkName: "Installer" */
                 /* webpackMode: "lazy" */
-                "../../controllers/FunctionsController/FunctionsController"
+                "../../components/Installer/Installer"
                 )
         )
     },
@@ -21,14 +26,19 @@ const functions = [
 
 const settings = [
     {
-        name:'',
+        back:false,
+        link:true,
+        exact:false,
+        name:'Settings',
         path: "/settings",
+        private:true,
+        root:false,
         forAdmin: true,
         component: lazy(props =>
             import(
-                /* webpackChunkName: "settingsController" */
+                /* webpackChunkName: "Installer" */
                 /* webpackMode: "lazy" */
-                "../../controllers/SettingsController/SettingsController"
+                "../../components/Installer/Installer"
                 )
         )
     },
@@ -37,7 +47,14 @@ const settings = [
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ noMatch ~~~ */
 
 const noMatch = {
+    back:false,
+    link:false,
+    exact:false,
+    name:'404',
     path: "*",
+    private:false,
+    root:false,
+    forAdmin: false,
     component: lazy(props =>
         import(
             /* webpackChunkName: "no-match" */
@@ -47,4 +64,62 @@ const noMatch = {
     )
 };
 
-export default [...functions, ...settings, noMatch];
+const routes = [
+    {
+        back:false,
+        link:false,
+        exact:false,
+        name:'Logout',
+        path: "/logout",
+        private:false,
+        root:false,
+        forAdmin: false,
+        component: lazy(props =>
+            import(
+                /* webpackChunkName: "LogOutForm" */
+                /* webpackMode: "lazy" */
+                "../../components/Auth/LogOutForm/LogOutForm"
+                )
+        )
+    },
+    {
+        back:false,
+        link:false,
+        exact:false,
+        name:'Login',
+        path: "/login",
+        private:false,
+        root:false,
+        forAdmin: false,
+        component: lazy(props =>
+            import(
+                /* webpackChunkName: "LoginForm" */
+                /* webpackMode: "lazy" */
+                "../../components/Auth/LoginForm/LoginForm"
+                )
+        )
+    },
+    {
+        back:false,
+        link:true,
+        exact:true,
+        name:'Installer',
+        path: "/installer",
+        private:true,
+        root:true,
+        forAdmin: false,
+        component: lazy(props =>
+            import(
+                /* webpackChunkName: "LoginForm" */
+                /* webpackMode: "lazy" */
+                "../../components/Installer/Installer"
+                )
+        ),
+        children:"Installer",
+    },
+    ...functions,
+    ...settings,
+    noMatch
+]
+
+export default routes;

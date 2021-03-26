@@ -5,6 +5,7 @@ import React from "react";
 import {useDispatch, useSelector} from "react-redux";
 import * as authSelector from "../../../store/auth/selectors";
 import * as actions from "../../../store/auth/actions";
+import {Redirect} from "react-router-dom";
 
 export default function LogOutForm(props){
     let isAuth=useSelector(authSelector.isAuth);
@@ -23,4 +24,5 @@ export default function LogOutForm(props){
             />
         )
     }
+    return <Redirect to={'/login'}/>
 }

@@ -1,6 +1,6 @@
 {
   "name": "MESone-v2-front",
-  "version": "0.1.0",
+  "version": "0.0.1",
   "private": true,
   "dependencies": {
     "@material-ui/core": "^4.11.3",
@@ -14,6 +14,7 @@
     "graphql-request": "^3.4.0",
     "js-cookie": "^2.2.1",
     "jwt-decode": "^3.1.2",
+    "list-react-files": "^0.2.0",
     "prop-types": "^15.7.2",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",

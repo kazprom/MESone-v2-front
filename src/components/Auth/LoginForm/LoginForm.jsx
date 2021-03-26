@@ -1,16 +1,18 @@
 import React, {useState} from 'react';
 import {batch, useDispatch, useSelector} from 'react-redux';
-import langPack from '../../../lang/ru/Auth';
 import LoginFormComponent from './LoginFormComponent';
 import * as actions from '../../../store/auth/actions';
 import * as appSelector from '../../../store/app/selectors';
 import * as authSelector from '../../../store/auth/selectors';
+import {useLang} from "../../../lang";
 
 export default function LoginForm(props) {
     let isLoading=useSelector(appSelector.isLoading)
     let domains=useSelector(authSelector.domains)
     let dispatch=useDispatch();
     let authSignIn = (payload)=>dispatch(actions.authSignIn(payload));
+
+    let langPack = useLang();
 
     const domainsList = [
         {

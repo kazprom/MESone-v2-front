@@ -4,7 +4,12 @@ import {
     Box,
     Checkbox,
     FormControl,
-    FormControlLabel, Grid, InputAdornment, InputLabel, MenuItem, Select,
+    FormControlLabel,
+    Grid,
+    InputAdornment,
+    InputLabel,
+    MenuItem,
+    Select,
     TextField
 } from '@material-ui/core';
 import PersonIcon from '@material-ui/icons/Person';
@@ -13,7 +18,7 @@ import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import LogoImage from "../../../No-logo.svg";
 import { ButtonLoader } from '../../../ui';
 
-function LoginFormComponent({ langPack, fields, changeField,signIn,isLoading, ...props }) {
+function LoginFormComponent({langPack, fields, changeField,signIn,isLoading, ...props }) {
     const classes = useStyles();
     return (
         <Fragment>
@@ -30,7 +35,7 @@ function LoginFormComponent({ langPack, fields, changeField,signIn,isLoading, ..
                                     fullWidth
                                     variant="outlined"
                                     name="login"
-                                    label="Логин"
+                                    label={langPack('Login')}
                                     value={fields.login}
                                     onChange={changeField}
                                     InputProps={{
@@ -47,7 +52,7 @@ function LoginFormComponent({ langPack, fields, changeField,signIn,isLoading, ..
                                     size={"small"}
                                     type='password'
                                     name='password'
-                                    label={langPack.password}
+                                    label={langPack('Password')}
                                     value={fields.password}
                                     onChange={changeField}
                                     InputProps={{
@@ -60,7 +65,8 @@ function LoginFormComponent({ langPack, fields, changeField,signIn,isLoading, ..
                                 />
                             </Grid>
                             <Grid item>
-                                {(props.domains.length > 1) && <FormControl fullWidth variant='outlined'>
+                                {(props.domains.length > 1) &&
+                                <FormControl fullWidth variant='outlined'>
                                     <InputLabel id='type-auth-label' children={langPack.typeAuth}/>
                                     <Select
                                         id='type-auth'
@@ -74,7 +80,8 @@ function LoginFormComponent({ langPack, fields, changeField,signIn,isLoading, ..
                                             <MenuItem key={`type-auth-item-${item.id}`} value={item.id} children={item.name}/>
                                         ))}
                                     />
-                                </FormControl>}
+                                </FormControl>
+                                }
                             </Grid>
                             <Grid item>
                                 <Grid container direction={"row"} spacing={1}>
@@ -87,17 +94,18 @@ function LoginFormComponent({ langPack, fields, changeField,signIn,isLoading, ..
                                                 onChange={changeField}
                                                 disabled={props.disableCheckbox}
                                             />}
-                                            label={langPack.rememberMe}
+                                            label={langPack('Remember')}
                                         />
                                     </Grid>
                                     <Grid item xs={5}>
                                         <ButtonLoader
+                                            label={langPack('Enter')}
                                             variant={"outlined"}
                                             startIcon={<ExitToAppIcon color={"primary"}/>}
                                             style={{width:"100%"}}
                                             className={classes.button}
                                             type='submit'
-                                            children={langPack.submit}
+                                            children={langPack('enter')}
                                             disabled={props.disableSubmit}
                                             onClick={signIn}
                                             isLoading={isLoading}

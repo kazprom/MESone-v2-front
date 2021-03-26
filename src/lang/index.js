@@ -1,5 +1,1 @@
-export default function langPack(lang='en'){
-    return{
-
-    }
-}
+export { default as useLang } from './useLang'

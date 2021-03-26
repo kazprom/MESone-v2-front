@@ -14,4 +14,8 @@ export const useStyles = makeStyles(theme => ({
         flex: 1,
         textAlign:"left",
     },
+    headerTitleText:{
+        fontSize:"1.2em",
+        fontWeight:"bold",
+    },
 }));

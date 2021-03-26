@@ -7,10 +7,11 @@ import * as actions from "../../../store/auth/actions";
 export default function RefreshToken(props) {
     let token=useSelector(authSelector.token)
     let dispatch=useDispatch();
-    let authRefreshToken=()=>dispatch(actions.authRefreshToken);
+    let authRefreshToken=(props)=>dispatch(actions.authRefreshToken(props));
 
     useEffect(() => {
         const timer = setInterval(() => {
+
             const { exp } = jwtDecode(token);
             const now = Math.floor(Date.now() / 1000);
             if (now > exp - 30) authRefreshToken();

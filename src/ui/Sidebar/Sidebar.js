@@ -1,18 +1,34 @@
-import {Grid} from "@material-ui/core";
+import {Grid, List, ListItem, ListItemText} from "@material-ui/core";
 import {useStyles} from "./SidebarStyle";
+import {Link} from "react-router-dom";
+import React from "react";
+import {useLang} from "../../lang";
 
-export default ()=>{
+export default ({url,header,footer,links})=>{
     let style=useStyles();
+    let langPack=useLang();
     return(
         <Grid container direction={"column"} className={style.sidebarWrapper}>
             <Grid item className={style.sidebarHeader}>
-                SB header
+                {header||"SB header"}
             </Grid>
             <Grid item className={style.sidebarContainer}>
-                SB container
+                <List dense>
+                    {links?.map((link)=>{
+                        return(
+                            <Link key={link.path} to={link.path} className={style.sidebarHref}>
+                                <ListItem
+                                    button
+                                >
+                                    <ListItemText primary={langPack(link.name)}/>
+                                </ListItem>
+                            </Link>
+                        )
+                    })}
+                </List>
             </Grid>
             <Grid item className={style.sidebarFooter}>
-                SB footer
+                {footer||"SB footer"}
             </Grid>
         </Grid>
     )

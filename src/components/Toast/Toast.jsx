@@ -1,6 +1,6 @@
 import React from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import langPack from '../../lang/ru/Toast';
+import langPack from '../../lang/ru_RU/Toast';
 import ToastComponent from './ToastComponent';
 import * as selectors from '../../store/app/selectors';
 import * as actions from "../../store/app/actions";

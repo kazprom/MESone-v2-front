@@ -3,7 +3,7 @@ import { gql } from 'graphql-request';
 
 export function loginRequest({ login, password, domain = null, remember = false }) {
     let variables = { login, password, domain, remember };
-    const query = gql`mutation (
+    const query = gql`query (
         $login: String!,
         $password: String!,
         $domain: Int,
@@ -33,7 +33,7 @@ export function loginRequest({ login, password, domain = null, remember = false 
 }
 
 export function logoutRequest() {
-    const query = gql`mutation {
+    const query = gql`query {
         authLogout {
             id
         }
@@ -44,7 +44,7 @@ export function logoutRequest() {
 }
 
 export function refreshTokenRequest() {
-    const query = gql`mutation {
+    const query = gql`query {
         authRefreshToken
     }`;
     return client().request(query)

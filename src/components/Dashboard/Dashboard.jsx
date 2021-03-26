@@ -1,7 +1,7 @@
 import React from 'react';
 import {useDispatch} from 'react-redux';
 import DashboardComponent from './DashboardComponent';
-import langPack from '../../lang/ru/Dashboard.js'
+import langPack from '../../lang/ru_RU/Dashboard.js'
 import * as actions from "../../store/auth/actions";
 
 export default function Dashboard(props) {
